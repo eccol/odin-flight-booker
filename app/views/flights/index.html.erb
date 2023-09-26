@@ -22,8 +22,8 @@
   </div>
 <% end %>
 
-<% if @results %>
-<%= form_with url: new_booking_path, method: :get do |form| %>
+<% if @results.present? %>
+<%= form_with url: flights_path, method: :get do |form| %>
   <div class="results">
     <table>
       <tr>
@@ -35,7 +35,7 @@
       </tr>
       <% @results.each do |result| %>
       <tr>
-        <td>form.radio_button :result_id, result.id </td>
+        <td><%= form.radio_button :result_id, result.id %></td>
         <td><%= result.id %></td>
         <td><%= result.departure_airport.code %></td>
         <td><%= result.arrival_airport.code %></td>
@@ -47,4 +47,6 @@
   <% form.hidden_field :passenger_count, value: @passenger_count %>
   <%= form.submit %>
 <% end %>
+<% else %>
+  <p>No flights found.</p>
 <% end %>
