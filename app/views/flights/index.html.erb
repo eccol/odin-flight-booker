@@ -23,9 +23,11 @@
 <% end %>
 
 <% if @results %>
+<%= form_with url: new_booking_path, method: :get do |form| %>
   <div class="results">
     <table>
       <tr>
+        <th>Select</th>
         <th>Flight #</th>
         <th>Departure Airport</th>
         <th>Arrival Airport</th>
@@ -33,13 +35,16 @@
       </tr>
       <% @results.each do |result| %>
       <tr>
+        <td>form.radio_button :result_id, result.id </td>
         <td><%= result.id %></td>
         <td><%= result.departure_airport.code %></td>
         <td><%= result.arrival_airport.code %></td>
         <td><%= result.date %></td>
-        <td>Book</td>
       </tr>
       <% end %>
     </table>
   </div>
+  <% form.hidden_field :passenger_count, value: @passenger_count %>
+  <%= form.submit %>
+<% end %>
 <% end %>

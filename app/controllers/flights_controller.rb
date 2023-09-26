@@ -4,6 +4,7 @@ class FlightsController < ApplicationController
     @dates = Flight.pluck(:date)
 
     @results = Flight.where(search_params) if params.has_key?(:departure_airport)
+    @passenger_count = params[:passenger_count]
   end
 
   private
