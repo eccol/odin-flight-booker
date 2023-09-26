@@ -23,7 +23,7 @@
 <% end %>
 
 <% if @results.present? %>
-<%= form_with url: flights_path, method: :get do |form| %>
+<%= form_with url: new_booking_path, method: :get do |form| %>
   <div class="results">
     <table>
       <tr>
