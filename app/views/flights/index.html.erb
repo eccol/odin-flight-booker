@@ -1,0 +1,45 @@
+<h1>Flight Search</h1>
+
+<%= form_with url: flights_path, method: :get do |form| %>
+  <div class="field">
+    <%= form.label :departure_airport %>
+    <%= select_tag(:departure_airport, options_for_select(@airports)) %>
+  </div>
+  <div class="field">
+    <%= form.label :arrival_airport %>
+    <%= select_tag(:arrival_airport, options_for_select(@airports)) %>
+  </div>
+  <div class="field">
+    <%= form.label :passenger_count %>
+    <%= select_tag(:passenger_count, options_for_select(1..4)) %>
+  </div>
+  <div class="field">
+    <%= form.label :date %>
+    <%= select_tag(:date, options_for_select(@dates)) %>
+  </div>
+  <div class="field">
+    <%= form.submit %>
+  </div>
+<% end %>
+
+<% if @results %>
+  <div class="results">
+    <table>
+      <tr>
+        <th>Flight #</th>
+        <th>Departure Airport</th>
+        <th>Arrival Airport</th>
+        <th>Date</th>
+      </tr>
+      <% @results.each do |result| %>
+      <tr>
+        <td><%= result.id %></td>
+        <td><%= result.departure_airport.code %></td>
+        <td><%= result.arrival_airport.code %></td>
+        <td><%= result.date %></td>
+        <td>Book</td>
+      </tr>
+      <% end %>
+    </table>
+  </div>
+<% end %>
