@@ -18,7 +18,7 @@
     <%= select_tag(:date, options_for_select(@dates)) %>
   </div>
   <div class="field">
-    <%= form.submit %>
+    <%= form.submit "Search", name: nil %>
   </div>
 <% end %>
 
@@ -44,8 +44,8 @@
       <% end %>
     </table>
   </div>
-  <% form.hidden_field :passenger_count, value: @passenger_count %>
-  <%= form.submit %>
+  <%= form.hidden_field :passenger_count, value: @passenger_count %>
+  <%= form.submit "Select", name: nil %>
 <% end %>
 <% else %>
   <p>No flights found.</p>
