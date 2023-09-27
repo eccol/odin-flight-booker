@@ -1,1 +1,20 @@
-:)
+<%= form_with model: @booking do |b| %>
+  <p>Flight: <%= @booking.flight.id %></p>
+  <p>Departing: <%= @booking.flight.departure_airport.code %></p>
+  <p>Arriving: <%= @booking.flight.arrival_airport.code %></p>
+  <p>Number of Passengers: <%= @booking.num_passengers %></p>
+  <% @booking.num_passengers.times do |i| %>
+    <%= b.fields_for @booking.passengers.build do |p| %>
+      <p>Passenger <%= i+1 %></p>
+      <div class="field">
+        <%= p.label :name %>
+        <%= p.text_field :name %>
+      </div>
+      <div class="field">
+        <%= p.label :email %>
+        <%= p.text_field :email %>
+      </div>
+    <% end %>
+  <% end %>
+  <%= b.submit %>
+<% end %>
