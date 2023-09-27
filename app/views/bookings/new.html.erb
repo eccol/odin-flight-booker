@@ -3,18 +3,17 @@
   <p>Departing: <%= @booking.flight.departure_airport.code %></p>
   <p>Arriving: <%= @booking.flight.arrival_airport.code %></p>
   <p>Number of Passengers: <%= @booking.num_passengers %></p>
-  <% @booking.num_passengers.times do |i| %>
-    <%= b.fields_for @booking.passengers.build do |p| %>
-      <p>Passenger <%= i+1 %></p>
+    <%= b.fields_for :passengers do |p| %>
+      <p>Passenger</p>
       <div class="field">
-        <%= p.label :name %>
+        Name
         <%= p.text_field :name %>
       </div>
       <div class="field">
-        <%= p.label :email %>
+        Email
         <%= p.text_field :email %>
       </div>
     <% end %>
-  <% end %>
+  <%= b.hidden_field :flight_id, value: @booking.flight.id %>
   <%= b.submit %>
 <% end %>
